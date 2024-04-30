@@ -1,71 +1,40 @@
 ---
+import Layout from "@/layouts/Layout.astro";
 import projects from "../scripts/projects.json";
-import "../styles/pico-link.scss";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-
-		<title>Radian628</title>
-		<script is:inline>
-			// This must be inline to stop FOUC
-
-			// Get the theme from local storage, otherwise color scheme preference, otherwise light
-			const theme = (() => {
-				if (
-					typeof localStorage !== "undefined" &&
-					localStorage.getItem("theme")
-				) {
-					return localStorage.getItem("theme");
-				}
-				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-					return "dark";
-				}
-				return "light";
-			})();
-
-			// Set a data attribute for Pico, but don't store it
-			// (users may change their preference between visits)
-			document.documentElement.setAttribute("data-theme", theme);
-		</script>
-	</head>
-	<body>
-		<main class="container">
-			<section class="hero">
-				<h1>Radian628</h1>
-				<div class="socials">
-					<a href="https://www.youtube.com/radian628">YouTube</a><a
-						href="https://github.com/radian628/">GitHub</a
+<Layout>
+	<main class="container">
+		<section class="hero">
+			<h1>Radian628</h1>
+			<div class="socials">
+				<a href="https://www.youtube.com/radian628">YouTube</a><a
+					href="https://github.com/radian628/">GitHub</a
+				>
+			</div>
+			<p>
+				Welcome to my compendium of technological horrors and inane ramblings!
+			</p>
+		</section>
+		<section class="projects">
+			{
+				projects.map((p) => (
+					<article
+						class="project-card"
+						style={`background-image: url("${p.imageLink}")`}
 					>
-				</div>
-				<p>
-					Welcome to my compendium of technological horrors and inane ramblings!
-				</p>
-			</section>
-			<section class="projects">
-				{
-					projects.map((p) => (
-						<article
-							class="project-card"
-							style={`background-image: url("${p.imageLink}")`}
-						>
-							<a href={p.link} class="contrast">
-								<div class="project-name-desc">
-									<h2>{p.name}</h2>
-									<p>{p.description}</p>
-								</div>
-							</a>
-						</article>
-					))
-				}
-			</section>
-		</main>
-	</body>
-</html>
+						<a href={p.link} class="contrast">
+							<div class="project-name-desc">
+								<h2>{p.name}</h2>
+								<p>{p.description}</p>
+							</div>
+						</a>
+					</article>
+				))
+			}
+		</section>
+	</main>
+</Layout>
 
 <style>
 	@media (prefers-color-scheme: light) {
