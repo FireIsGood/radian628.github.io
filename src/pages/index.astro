@@ -34,34 +34,36 @@ import "../styles/pico-link.scss";
 		</script>
 	</head>
 	<body>
-		<section class="hero">
-			<h1>Radian628</h1>
-			<div class="socials">
-				<a href="https://www.youtube.com/radian628">YouTube</a><a
-					href="https://github.com/radian628/">GitHub</a
-				>
-			</div>
-			<p>
-				Welcome to my compendium of technological horrors and inane ramblings!
-			</p>
-		</section>
-		<section class="projects">
-			{
-				projects.map((p) => (
-					<article
-						class="project-card"
-						style={`background-image: url("${p.imageLink}")`}
+		<main class="container">
+			<section class="hero">
+				<h1>Radian628</h1>
+				<div class="socials">
+					<a href="https://www.youtube.com/radian628">YouTube</a><a
+						href="https://github.com/radian628/">GitHub</a
 					>
-						<a href={p.link} class="contrast">
-							<div class="project-name-desc">
-								<h2>{p.name}</h2>
-								<p>{p.description}</p>
-							</div>
-						</a>
-					</article>
-				))
-			}
-		</section>
+				</div>
+				<p>
+					Welcome to my compendium of technological horrors and inane ramblings!
+				</p>
+			</section>
+			<section class="projects">
+				{
+					projects.map((p) => (
+						<article
+							class="project-card"
+							style={`background-image: url("${p.imageLink}")`}
+						>
+							<a href={p.link} class="contrast">
+								<div class="project-name-desc">
+									<h2>{p.name}</h2>
+									<p>{p.description}</p>
+								</div>
+							</a>
+						</article>
+					))
+				}
+			</section>
+		</main>
 	</body>
 </html>
 
